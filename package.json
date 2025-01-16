@@ -4,7 +4,9 @@
   "description": "web portfolio",
   "main": "index.js",
   "scripts": {
-    "dev": "next dev"
+    "dev": "next dev",
+    "lint:check": "prettier --check .",
+    "lint:fix": "prettier --write ."
   },
   "repository": {
     "type": "git",
@@ -24,6 +26,7 @@
   "devDependencies": {
     "@types/node": "22.10.2",
     "@types/react": "19.0.1",
+    "prettier": "^3.4.2",
     "typescript": "5.7.2"
   }
 }
