@@ -21,7 +21,8 @@ const config: Config.InitialOptions = {
         '^@/(.*)$': '<rootDir>/src/$1',
         '^@/src/components/(.*)$': '<rootDir>/src/components/$1',
     },
-}
+    setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+};
 
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
