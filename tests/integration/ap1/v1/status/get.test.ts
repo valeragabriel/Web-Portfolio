@@ -1,5 +1,5 @@
 import fetchMock from "jest-fetch-mock";
-import database  from "../../../../../infra/database.ts";
+import database  from "infra/database";
 
 fetchMock.enableMocks(); 
 
