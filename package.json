@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
+    "docker:up": "docker compose -f infra/compose.yml up -d",
+    "docker:stop": "docker compose -f infra/compose.yml stop",
+    "docker:down": "docker compose -f infra/compose.yml down",
     "lint:check": "prettier --check .",
     "lint:fix": "prettier --write .",
     "test": "jest",
