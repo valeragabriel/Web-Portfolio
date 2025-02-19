@@ -11,7 +11,9 @@
     "lint:check": "prettier --check .",
     "lint:fix": "prettier --write .",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "migration:create": "node-pg-migrate -m infra/migrations create",
+    "migration:up": "node-pg-migrate -m infra/migrations --envPath .env.development up"
   },
   "repository": {
     "type": "git",
@@ -24,8 +26,10 @@
   "author": "Gabriel Gobbo Araújo Valera",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^16.4.7",
     "jest-environment-jsdom": "^29.7.0",
     "next": "^15.1.2",
+    "node-pg-migrate": "^7.9.1",
     "pg": "^8.13.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
