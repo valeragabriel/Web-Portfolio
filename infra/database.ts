@@ -40,4 +40,4 @@ function getSSLValues() {
   return process.env.NODE_ENV === "production" ? true : false;
 }
 
-export default{ query: query, getNewClient};
+export default{ query, getNewClient};
