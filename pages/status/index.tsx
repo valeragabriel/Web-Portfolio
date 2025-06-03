@@ -1,27 +1,28 @@
-import { useQuery } from '@tanstack/react-query';
+import { QueryClientProvider, useQuery, QueryClient } from '@tanstack/react-query';
 import { ReactElement } from 'react';
 
-async function fetchAPI({ queryKey }) {
-  const [key] = queryKey;
+const queryClient = new QueryClient();
+
+async function fetchAPI(key) {
   const response = await fetch(key);
   return await response.json();
 }
 
 export default function StatusPage() {
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <h1>Status</h1>
       <UpdatedAt />
       <DatabaseStatus />
-    </>
+    </QueryClientProvider>
   );
 }
 
 function UpdatedAt() {
   const { isLoading, data } = useQuery({
-    queryKey: ['/api/v1/status'],
-    queryFn: fetchAPI,
-    refetchInterval: 2000, 
+    queryKey: ['status'],
+    queryFn: () => fetchAPI('api/v1/status'),
+    refetchInterval: 20000,
   });
 
   let updatedAtText = 'Carregando...';
@@ -34,9 +35,9 @@ function UpdatedAt() {
 
 function DatabaseStatus() {
   const { isLoading, data } = useQuery({
-    queryKey: ['/api/v1/status'],
-    queryFn: fetchAPI,
-    refetchInterval: 2000,
+    queryKey: ['status'],
+    queryFn: () => fetchAPI('api/v1/status'),
+    staleTime: 20000, // time to stay in cache
   });
 
   let databaseStatusInformation: ReactElement | string = 'Carregando...';
