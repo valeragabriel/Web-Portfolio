@@ -1,7 +1,11 @@
 import database from 'infra/database';
-import { InternalServerError } from 'infra/error';
+import { InternalServerError, MethodNotAllowed } from 'infra/error';
 
 async function status(request, response) {
+  if (request.method !== 'GET') {
+    const objectError = new MethodNotAllowed();
+    return response.status(objectError.statusCode).json(objectError.toJSON());
+  }
   try {
     const updatedAt = new Date().toISOString();
 
@@ -32,6 +36,7 @@ async function status(request, response) {
   } catch (error) {
     const objectError = new InternalServerError({
       cause: error,
+      statusCode: error.statusCode,
     });
 
     response.status(500).json(objectError);
