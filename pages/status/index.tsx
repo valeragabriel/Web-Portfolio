@@ -3,7 +3,7 @@ import { ReactElement } from 'react';
 
 const queryClient = new QueryClient();
 
-async function fetchAPI(key) {
+async function fetchAPI(key: string) {
   const response = await fetch(key);
   return await response.json();
 }
