@@ -49,6 +49,7 @@
     "prettier-plugin-tailwindcss": "0.6.11",
     "react": "19.0.0",
     "react-dom": "19.0.0",
+    "swr": "^2.3.3",
     "text-encoding": "0.7.0"
   },
   "devDependencies": {
