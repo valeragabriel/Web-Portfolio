@@ -1,31 +1,29 @@
-import { QueryClientProvider, useQuery, QueryClient } from '@tanstack/react-query';
-import { ReactElement } from 'react';
-
-const queryClient = new QueryClient();
+import { JSX } from 'react';
+import useSWR from 'swr';
 
 async function fetchAPI(key: string) {
   const response = await fetch(key);
-  return await response.json();
+  const responseBody = await response.json();
+  return responseBody;
 }
 
 export default function StatusPage() {
   return (
-    <QueryClientProvider client={queryClient}>
+    <>
       <h1>Status</h1>
       <UpdatedAt />
       <DatabaseStatus />
-    </QueryClientProvider>
+    </>
   );
 }
 
 function UpdatedAt() {
-  const { isLoading, data } = useQuery({
-    queryKey: ['status'],
-    queryFn: () => fetchAPI('api/v1/status'),
-    refetchInterval: 20000,
+  const { isLoading, data } = useSWR('/api/v1/status', fetchAPI, {
+    refreshInterval: 2000,
   });
 
   let updatedAtText = 'Carregando...';
+
   if (!isLoading && data) {
     updatedAtText = new Date(data.updated_at).toLocaleString('pt-BR');
   }
@@ -34,13 +32,12 @@ function UpdatedAt() {
 }
 
 function DatabaseStatus() {
-  const { isLoading, data } = useQuery({
-    queryKey: ['status'],
-    queryFn: () => fetchAPI('api/v1/status'),
-    staleTime: 20000, // time to stay in cache
+  const { isLoading, data } = useSWR('/api/v1/status', fetchAPI, {
+    refreshInterval: 2000,
   });
 
-  let databaseStatusInformation: ReactElement | string = 'Carregando...';
+  let databaseStatusInformation: string | JSX.Element = 'Carregando...';
+
   if (!isLoading && data) {
     databaseStatusInformation = (
       <>
