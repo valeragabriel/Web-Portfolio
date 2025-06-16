@@ -1,4 +1,10 @@
-import { InternalServerError, MethodNotAllowedError, NotFoundError, UnauthorizedError, ValidationError } from "./error";
+import {
+  InternalServerError,
+  MethodNotAllowedError,
+  NotFoundError,
+  UnauthorizedError,
+  ValidationError,
+} from './error';
 
 function onNoMatchHandler(request, response) {
   const publicErrorObject = new MethodNotAllowedError();
