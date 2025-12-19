@@ -42,7 +42,7 @@
     "eslint-config-prettier": "10.1.1",
     "eslint-plugin-jest": "28.11.0",
     "jest-environment-jsdom": "29.7.0",
-    "next": "^15.3.3",
+    "next": "15.3.8",
     "next-connect": "^1.0.0",
     "node-pg-migrate": "7.9.1",
     "pg": "8.14.1",
